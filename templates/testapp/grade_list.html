@@ -1,0 +1,38 @@
+{% extends 'testapp/base.html' %}
+{% block body_block %}
+
+<h2 class="mb-3">Grades</h2>
+
+<table class="table table-bordered table-striped bg-white">
+  <thead class="table-light">
+    <tr>
+      <th>Student</th>
+      <th>Course</th>
+      <th>Score</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for grade in grades %}
+    <tr>
+      <td>{{ grade.student }}</td>
+      <td>{{ grade.course }}</td>
+      <td>{{ grade.score }}</td>
+      <td>
+        <a href="{% url 'grade_view' grade.id %}" class="btn btn-sm btn-info">View</a>
+        <a href="{% url 'grade_update' grade.id %}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{% url 'grade_dlt' grade.id %}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" class="text-center text-muted">No grades found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="mt-3 text-end">
+  <a href="{% url 'grade_create' %}" class="btn btn-primary">Add Grade</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+
+{% extends 'testapp/base.html' %}
+{% block body_block %}
+
+<h2 class="mb-3">Courses</h2>
+
+<table class="table table-bordered table-striped bg-white">
+  <thead class="table-light">
+    <tr>
+      <th>Course Nane</th>
+      <th>Teacherr</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for course in courses %}
+    <tr>
+      <td>{{ course.name }}</td>
+      <td>{{ course.teacher }}</td>
+      <td>
+         <a href="{% url 'course_view' course.id %}" class="btn btn-sm btn-info">View</a>
+          <a href="{% url 'course_update' course.id %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'course_dlt' course.id %}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3" class="text-center text-muted">No courses found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="mt-3 text-end">
+  <a href="{% url 'course_create' %}" class="btn btn-primary">+ Add Course</a>
+</div>
+
+{% endblock %}

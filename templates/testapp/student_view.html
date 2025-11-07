@@ -1,0 +1,15 @@
+{% extends 'testapp/base.html' %}
+{% block body_block %}
+
+<div class="card shadow-sm p-4 bg-white mt-4">
+  <h3 class="text-primary mb-3">Student Details</h3>
+
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Name:</strong> {{ student.name }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ student.email }}</li>
+    {% if student.course %}
+    <li class="list-group-item"><strong>Course:</strong> {{ student.course.name }}</li>
+    {% endif %}
+  </ul>
+  
+{% endblock %}
